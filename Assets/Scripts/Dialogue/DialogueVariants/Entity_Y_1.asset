@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42ee73f39cb723840a7b8e8826b33a69, type: 3}
+  m_Name: Entity_Y_1
+  m_EditorClassIdentifier: 
+  messages:
+  - Welcome, little one. I am Entity Y.
+  - Your name is Umi, and you are currently located in an artificial reality.
+  - Your purpose is to eliminate a virus that lurks here and erase all traces of
+    it.
+  - You are built to be able to resist its effects...
+  - That can't be said for other robots you will encounter.
+  - Remember, you must destroy any and all traces of the virus...
+  - Even if that means shutting down those robots for good.
+  - In the eventuality that you fail your mission,
+  - another will take your place.
+  - Good luck, Umi.
+  - Do not fail.

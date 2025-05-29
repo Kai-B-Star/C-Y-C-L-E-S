@@ -10,8 +10,9 @@ public class PlayerBase : MonoBehaviour
     protected Rigidbody2D rigidBody;
     [SerializeField] protected Animator animator;
     protected SpriteRenderer spriteRenderer;
-    [SerializeField] protected float movementSpeed;
+    [SerializeField] private float movementSpeed;
     protected bool isMoving;
+    public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     #endregion
     private void Awake()
     {

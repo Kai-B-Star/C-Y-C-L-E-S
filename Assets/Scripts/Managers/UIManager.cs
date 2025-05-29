@@ -78,5 +78,5 @@ public class UIManager : MonoBehaviour
     #endregion
 }
 
-//scene transition logic 
+//scene transition logic (main menu done)
 //grab GameManager events and show respective panels

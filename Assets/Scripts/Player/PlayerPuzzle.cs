@@ -15,7 +15,7 @@ public class PlayerPuzzle : PlayerBase
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        rigidBody.velocity = new Vector2(horizontalInput * movementSpeed, rigidBody.velocity.y);
+        rigidBody.velocity = new Vector2(horizontalInput * MovementSpeed, rigidBody.velocity.y);
 
         animator.SetFloat("MoveSpeed", Mathf.Abs(horizontalInput));
         animator.SetBool("IsGrounded", isGrounded);

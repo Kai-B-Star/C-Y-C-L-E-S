@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
     [SerializeField] private GameObject dialogueBox;
-    [SerializeField] private TextMeshProUGUI dialogueMessage;
+    [SerializeField] private Text dialogueMessage;
     [SerializeField] private GameObject spaceIndicator;
     private UIManager uiManager;
     private int currentPos;
-    private DialogueTree currentDialogue;
+    private DialogueBase currentDialogue;
     public static DialogueManager instance;
+    private PlayerStandard player;
     private void Awake()
     {
         dialogueBox.SetActive(false);
@@ -22,7 +23,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Destroy(instance);
+            Destroy(gameObject);
         }
     }
     private void Start()
@@ -40,8 +41,9 @@ public class DialogueManager : MonoBehaviour
             AdvanceDialogue();
         }
     }
-    public void BeginDialogue(DialogueTree dialogueToStart)
+    public void BeginDialogue(DialogueBase dialogueToStart)
     {
+        PlayerFreeze();
         dialogueBox.SetActive(true);
         spaceIndicator.SetActive(true);
 
@@ -62,6 +64,14 @@ public class DialogueManager : MonoBehaviour
             dialogueBox?.SetActive(false);
             spaceIndicator.SetActive(false);
         }
+    }
+    public void PlayerFreeze()
+    {
+        player.MovementSpeed = 0;
+    }
+    public void PlayerUnfreeze()
+    {
+        player.MovementSpeed = 10;
     }
 }
 

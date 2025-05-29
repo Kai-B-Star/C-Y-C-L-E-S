@@ -20,7 +20,7 @@ public class Interactable: MonoBehaviour
         {
             if (Input.GetKeyDown(interactKey))
             {
-                interactAction.Invoke();
+                interactAction?.Invoke();   //erro nesse corno aqui
             }
         }
     }

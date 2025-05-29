@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    [SerializeField] private DialogueTree dialogueOnClick;
+    [SerializeField] private DialogueBase dialogueOnClick;
     private bool hasBeenTriggered;
-    public void NPCSpeak()                                                //starts dialogue on click (to be changed to future interaction button
+    public void NPCSpeak()
     {
         if (!hasBeenTriggered)
         {
             hasBeenTriggered = true;
-            print("triggered");
             DialogueManager.instance.BeginDialogue(dialogueOnClick);
         }
     }
