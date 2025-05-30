@@ -10,7 +10,7 @@ public class PlayerStandard : PlayerBase
         playerMovement.x = Input.GetAxisRaw("Horizontal");
         playerMovement.y = Input.GetAxisRaw("Vertical");
 
-        rigidBody.MovePosition(rigidBody.position + playerMovement * MovementSpeed * Time.deltaTime);
+        rigidBody.MovePosition(rigidBody.position + playerMovement * MovementSpeed * Time.fixedDeltaTime);
 
         animator.SetBool("MoveSpeed", isMoving);
 

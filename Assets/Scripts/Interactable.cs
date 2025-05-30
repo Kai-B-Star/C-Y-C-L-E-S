@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Interactable: MonoBehaviour
 {
@@ -9,18 +10,20 @@ public class Interactable: MonoBehaviour
     [SerializeField] private KeyCode interactKey;
     [SerializeField] private UnityEvent interactAction;
     [SerializeField] private GameObject notify;
+    [SerializeField] private GameObject rangeCollider;
 
     private void Update()
     {
         InteractCheck();
     }
-    private void InteractCheck()
+    public void InteractCheck()
     {
         if (isInRange)
         {
             if (Input.GetKeyDown(interactKey))
             {
-                interactAction?.Invoke();   //erro nesse corno aqui
+                interactAction.Invoke();
+                rangeCollider.SetActive(false);
             }
         }
     }

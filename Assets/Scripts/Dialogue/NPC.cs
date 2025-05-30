@@ -6,12 +6,17 @@ public class NPC : MonoBehaviour
 {
     [SerializeField] private DialogueBase dialogueOnClick;
     private bool hasBeenTriggered;
+    private DialogueManager dialogueManager;
+    private void Start()
+    {
+        dialogueManager = DialogueManager.instance;
+    }
     public void NPCSpeak()
     {
         if (!hasBeenTriggered)
         {
             hasBeenTriggered = true;
-            DialogueManager.instance.BeginDialogue(dialogueOnClick);
+            dialogueManager.BeginDialogue(dialogueOnClick);
         }
     }
 }

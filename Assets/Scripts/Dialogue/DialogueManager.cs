@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     private int currentPos;
     private DialogueBase currentDialogue;
     public static DialogueManager instance;
-    private PlayerStandard player;
+    [SerializeField] private PlayerStandard player;
     private void Awake()
     {
         dialogueBox.SetActive(false);
@@ -63,6 +63,7 @@ public class DialogueManager : MonoBehaviour
             currentDialogue = null;
             dialogueBox?.SetActive(false);
             spaceIndicator.SetActive(false);
+            PlayerUnfreeze();
         }
     }
     public void PlayerFreeze()

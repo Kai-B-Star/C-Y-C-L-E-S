@@ -76,6 +76,18 @@ public class UIManager : MonoBehaviour
         Application.Quit();
     }
     #endregion
+
+    #region PauseMenu
+    private void Pause()
+    {
+        
+    }
+    private void Resume()
+    {
+
+    }
+    #endregion
+
 }
 
 //scene transition logic (main menu done)
