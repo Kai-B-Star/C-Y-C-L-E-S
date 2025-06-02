@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerStandard : PlayerBase
 {
+    #region Movement
     protected override void MoveHandle()
     {
         Vector2 playerMovement;
         playerMovement.x = Input.GetAxisRaw("Horizontal");
         playerMovement.y = Input.GetAxisRaw("Vertical");
 
-        rigidBody.MovePosition(rigidBody.position + playerMovement * MovementSpeed * Time.fixedDeltaTime);
+        rigidBody.MovePosition(rigidBody.position + playerMovement * movementSpeed * Time.fixedDeltaTime);
 
         animator.SetBool("MoveSpeed", isMoving);
 
@@ -32,5 +33,6 @@ public class PlayerStandard : PlayerBase
             spriteRenderer.flipX = true;
         }
     }
+    #endregion
 }
 

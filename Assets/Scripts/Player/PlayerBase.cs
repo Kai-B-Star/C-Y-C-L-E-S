@@ -10,10 +10,11 @@ public class PlayerBase : MonoBehaviour
     protected Rigidbody2D rigidBody;
     [SerializeField] protected Animator animator;
     protected SpriteRenderer spriteRenderer;
-    [SerializeField] private float movementSpeed;
+    [SerializeField] protected float movementSpeed;
     protected bool isMoving;
-    public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
     #endregion
+
+    #region MonoBehaviour
     private void Awake()
     {
         uiManager = UIManager.instance;
@@ -29,6 +30,9 @@ public class PlayerBase : MonoBehaviour
         Jump();
         GroundCheck();
     }
+    #endregion
+
+    #region OnTrigger2D
     private void OnTriggerEnter2D(Collider2D collision)
     {
         ICollectable collectable = collision.GetComponent<ICollectable>();
@@ -37,6 +41,21 @@ public class PlayerBase : MonoBehaviour
             collectable.Collect();
         }
     }
+    #endregion
+
+    #region PlayerFreeze
+    public void PlayerFreeze()
+    {
+        movementSpeed = 0;
+    }
+    public void PlayerUnfreeze()
+    {
+        movementSpeed = 10;
+    }
+
+    #endregion
+
+    #region Virtuals
     protected virtual void MoveHandle()
     { }
     protected virtual void Shoot()
@@ -45,4 +64,5 @@ public class PlayerBase : MonoBehaviour
     { }
     protected virtual void GroundCheck()
     { }
+    #endregion
 }

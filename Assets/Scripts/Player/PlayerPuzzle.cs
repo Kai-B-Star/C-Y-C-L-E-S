@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class PlayerPuzzle : PlayerBase
 {
+    #region Declarations
     private bool isGrounded;
     [SerializeField] private float jumpForce;
     private float groundCheckDistance = 1.5f;
     [SerializeField] private LayerMask groundLayer;
 
     public LayerMask GroundLayer { get => groundLayer; set => groundLayer = value; }
+#endregion
 
+    #region Movement
     protected override void MoveHandle()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        rigidBody.velocity = new Vector2(horizontalInput * MovementSpeed, rigidBody.velocity.y);
+        rigidBody.velocity = new Vector2(horizontalInput * movementSpeed, rigidBody.velocity.y);
 
         animator.SetFloat("MoveSpeed", Mathf.Abs(horizontalInput));
         animator.SetBool("IsGrounded", isGrounded);
@@ -29,6 +32,9 @@ public class PlayerPuzzle : PlayerBase
             spriteRenderer.flipX = true;
         }
     }
+#endregion
+
+    #region Jump
     protected override void GroundCheck()
     {
         Debug.DrawRay(transform.position, Vector2.down * groundCheckDistance, Color.red);
@@ -52,4 +58,5 @@ public class PlayerPuzzle : PlayerBase
             rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
+    #endregion
 }

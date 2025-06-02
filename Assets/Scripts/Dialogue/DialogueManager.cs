@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    #region Declarations
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private Text dialogueMessage;
     [SerializeField] private GameObject spaceIndicator;
@@ -13,6 +14,10 @@ public class DialogueManager : MonoBehaviour
     private DialogueBase currentDialogue;
     public static DialogueManager instance;
     [SerializeField] private PlayerStandard player;
+    [SerializeField] private Elevator elevator;
+    #endregion
+
+    #region MonoBehaviour
     private void Awake()
     {
         dialogueBox.SetActive(false);
@@ -34,6 +39,9 @@ public class DialogueManager : MonoBehaviour
     {
         SpaceCheck();
     }
+    #endregion
+
+    #region Dialogue
     private void SpaceCheck()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -43,7 +51,7 @@ public class DialogueManager : MonoBehaviour
     }
     public void BeginDialogue(DialogueBase dialogueToStart)
     {
-        PlayerFreeze();
+        player.PlayerFreeze();
         dialogueBox.SetActive(true);
         spaceIndicator.SetActive(true);
 
@@ -63,16 +71,11 @@ public class DialogueManager : MonoBehaviour
             currentDialogue = null;
             dialogueBox?.SetActive(false);
             spaceIndicator.SetActive(false);
-            PlayerUnfreeze();
+            player.PlayerUnfreeze();
+            elevator.AddRequirement();
         }
     }
-    public void PlayerFreeze()
-    {
-        player.MovementSpeed = 0;
-    }
-    public void PlayerUnfreeze()
-    {
-        player.MovementSpeed = 10;
-    }
+    #endregion
+
 }
 

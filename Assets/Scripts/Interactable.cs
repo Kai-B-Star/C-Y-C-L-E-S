@@ -6,16 +6,21 @@ using UnityEngine.UI;
 
 public class Interactable: MonoBehaviour
 {
+    #region Declarations
     private bool isInRange;
     [SerializeField] private KeyCode interactKey;
     [SerializeField] private UnityEvent interactAction;
     [SerializeField] private GameObject notify;
-    [SerializeField] private GameObject rangeCollider;
+    #endregion
 
+    #region MonoBehaviour
     private void Update()
     {
         InteractCheck();
     }
+    #endregion
+
+    #region Interact
     public void InteractCheck()
     {
         if (isInRange)
@@ -23,10 +28,12 @@ public class Interactable: MonoBehaviour
             if (Input.GetKeyDown(interactKey))
             {
                 interactAction.Invoke();
-                rangeCollider.SetActive(false);
             }
         }
     }
+    #endregion
+
+    #region OnTrigger2D
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerStandard>())
@@ -43,4 +50,5 @@ public class Interactable: MonoBehaviour
             notify.SetActive(false);
         }
     }
+    #endregion
 }

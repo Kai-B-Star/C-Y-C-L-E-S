@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Application = UnityEngine.Application;
 
 public class UIManager : MonoBehaviour
@@ -12,8 +13,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject options;
     [SerializeField] private GameObject controls;
     [SerializeField] private GameObject credits;
-    public enum MainMenuScreens { MainMenu, Options, Controls, Credits }
-    private Dictionary<MainMenuScreens, GameObject> mainMenuOrganize;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject pauseButton;
+    public enum UIScreens { MainMenu, Options, Controls, Credits, Pause }
+    private Dictionary<UIScreens, GameObject> uiOrganize;
     #endregion
 
     #region MonoBehaviour
@@ -30,46 +33,51 @@ public class UIManager : MonoBehaviour
     }
     private void Start()
     {
-        MainMenuDictionary();
+        UIDictionary();
+        if (pauseMenu != null)
+        {
+           pauseMenu.SetActive(false);
+        }
     }
     #endregion
 
     #region MainMenu
-    public void MainMenuDictionary()
+    public void UIDictionary()
     {
-        mainMenuOrganize = new Dictionary<MainMenuScreens, GameObject>();
-        mainMenuOrganize.Add(MainMenuScreens.MainMenu, mainMenu);
-        mainMenuOrganize.Add(MainMenuScreens.Options, options);
-        mainMenuOrganize.Add(MainMenuScreens.Controls, controls);
-        mainMenuOrganize.Add(MainMenuScreens.Credits, credits);
+        uiOrganize = new Dictionary<UIScreens, GameObject>();
+        uiOrganize.Add(UIScreens.MainMenu, mainMenu);
+        uiOrganize.Add(UIScreens.Options, options);
+        uiOrganize.Add(UIScreens.Controls, controls);
+        uiOrganize.Add(UIScreens.Credits, credits);
+        uiOrganize.Add(UIScreens.Pause, pauseMenu);
     }
-    public void ShowMainScreen(MainMenuScreens mainScreens)
+    public void ShowScreen(UIScreens mainScreens)
     {
-        foreach (var screen in mainMenuOrganize.Values)
+        foreach (var screen in uiOrganize.Values)
         {
             if (screen != null) screen.SetActive(false);
         }
 
-        if (mainMenuOrganize.ContainsKey(mainScreens) && mainMenuOrganize[mainScreens] != null)
+        if (uiOrganize.ContainsKey(mainScreens) && uiOrganize[mainScreens] != null)
         {
-            mainMenuOrganize[mainScreens].SetActive(true);
+            uiOrganize[mainScreens].SetActive(true);
         }
     }
     public void MainMenu()
     {
-        ShowMainScreen(MainMenuScreens.MainMenu);
+        ShowScreen(UIScreens.MainMenu);
     }
     public void Options()
     {
-        ShowMainScreen(MainMenuScreens.Options);
+        ShowScreen(UIScreens.Options);
     }
     public void Controls()
     {
-        ShowMainScreen(MainMenuScreens.Controls);
+        ShowScreen(UIScreens.Controls);
     }
     public void Credits()
     {
-        ShowMainScreen(MainMenuScreens.Credits);
+        ShowScreen(UIScreens.Credits);
     }
     public void Quit()
     {
@@ -78,17 +86,27 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region PauseMenu
-    private void Pause()
+    public void PauseGame()
     {
-        
+        ShowScreen(UIScreens.Pause);
+        pauseButton.SetActive(false);
     }
-    private void Resume()
+    public void Resume()
     {
-
+        pauseMenu.SetActive(false);
+        pauseButton.SetActive(true);
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
+    }
+    public void MainMenuScene()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
     #endregion
 
 }
 
 //scene transition logic (main menu done)
-//grab GameManager events and show respective panels
+//grab GameManager events and show respective panels (pause done)
