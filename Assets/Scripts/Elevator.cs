@@ -13,9 +13,9 @@ public class Elevator : MonoBehaviour
     [SerializeField] private GameObject confirmationScreen;
     [SerializeField] private GameObject requirementScreen;
     private Animator animator;
-    [SerializeField] private PlayerStandard player;
     [SerializeField] private int requirementsAmount;
     [SerializeField] private int currentRequirements;
+    [SerializeField] private GameObject rangeCollider;
     #endregion
 
     #region MonoBehaviour
@@ -32,6 +32,7 @@ public class Elevator : MonoBehaviour
     private void Update()
     {
         RequirementsAchieved();
+        ConfirmationButtons();
     }
     #endregion
 
@@ -45,19 +46,7 @@ public class Elevator : MonoBehaviour
             {
                 isOpen = true;
                 confirmationScreen.SetActive(true);
-                if(Input.GetKeyDown(confirmationKey))      //keys not working (prints 1 and 2 not running)
-                {
-                    print("1");
-                    confirmationScreen.SetActive(false);
-                    //move player down
-                }
-                else if(Input.GetKeyDown(cancelationKey))
-                {
-                    print("2");
-                    confirmationScreen.SetActive(false);
-                    isOpen = false;
-                    hasBeenTriggered = false;
-                }
+
             }
             else
             {
@@ -65,6 +54,24 @@ public class Elevator : MonoBehaviour
                 hasBeenTriggered = false;
                 StartCoroutine(RequirementScreenTime());
             }
+        }
+    }
+    public void ConfirmationButtons()
+    {
+        if (Input.GetKeyDown(confirmationKey) && isOpen == true)
+        {
+            print("1");
+            confirmationScreen.SetActive(false);
+            rangeCollider.SetActive(false);
+            //move player down (cutscene)
+            //closing door animation
+        }
+        else if (Input.GetKeyDown(cancelationKey) && isOpen == true)
+        {
+            print("2");
+            confirmationScreen.SetActive(false);
+            isOpen = false;
+            hasBeenTriggered = false;
         }
     }
     #endregion
