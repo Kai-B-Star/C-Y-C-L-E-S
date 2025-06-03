@@ -24,7 +24,6 @@ public class Elevator : MonoBehaviour
         requirementsMet = false;
         isOpen = false;
         animator = GetComponent<Animator>();
-        animator.SetBool("DoorOpen", isOpen);
         confirmationScreen.SetActive(false);
         requirementScreen.SetActive(false);
         currentRequirements = 0;
@@ -45,11 +44,13 @@ public class Elevator : MonoBehaviour
             if(requirementsMet == true)
             {
                 isOpen = true;
+                animator.SetBool("DoorOpen", isOpen);
                 confirmationScreen.SetActive(true);
             }
             else
             {
                 isOpen = false;
+                animator.SetBool("DoorOpen", isOpen);
                 hasBeenTriggered = false;
                 StartCoroutine(RequirementScreenTime());
             }
@@ -62,16 +63,23 @@ public class Elevator : MonoBehaviour
             print("1");
             confirmationScreen.SetActive(false);
             rangeCollider.SetActive(false);
-            //move player down (cutscene)
-            //closing door animation
+            //move player into elevator (animation)
+            StartCoroutine(ElevatorClose());
+            isOpen = false;
+            animator.SetBool("DoorOpen", isOpen);
         }
         else if (Input.GetKeyDown(cancelationKey) && isOpen == true)
         {
             print("2");
             confirmationScreen.SetActive(false);
             isOpen = false;
+            animator.SetBool("DoorOpen", isOpen);
             hasBeenTriggered = false;
         }
+    }
+    private IEnumerator ElevatorClose()
+    {
+        yield return new WaitForSeconds(2f);
     }
     #endregion
 
