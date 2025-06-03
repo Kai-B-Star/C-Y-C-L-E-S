@@ -23,13 +23,11 @@ public class PlayerPuzzle : PlayerBase
         animator.SetFloat("MoveSpeed", Mathf.Abs(horizontalInput));
         animator.SetBool("IsGrounded", isGrounded);
 
-        if (horizontalInput < 0)
+        if (Mathf.Abs(horizontalInput) > 0.01f)
         {
-            spriteRenderer.flipX = false;
-        }
-        else if (horizontalInput > 0)
-        {
-            spriteRenderer.flipX = true;
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * (horizontalInput > 0 ? 1 : -1);
+            transform.localScale = scale;
         }
     }
 #endregion

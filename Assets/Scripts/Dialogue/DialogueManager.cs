@@ -68,11 +68,11 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            currentDialogue = null;
             dialogueBox?.SetActive(false);
             spaceIndicator.SetActive(false);
             player.PlayerUnfreeze();
             elevator.AddRequirement();
+            currentDialogue = null;
         }
     }
     #endregion

@@ -9,9 +9,10 @@ public class PlayerBase : MonoBehaviour
     protected GameManager gameManager;
     protected Rigidbody2D rigidBody;
     [SerializeField] protected Animator animator;
-    protected SpriteRenderer spriteRenderer;
     [SerializeField] protected float movementSpeed;
     protected bool isMoving;
+    protected bool isLeft;
+    protected bool isRight;
     #endregion
 
     #region MonoBehaviour
@@ -21,7 +22,6 @@ public class PlayerBase : MonoBehaviour
         gameManager = GameManager.instance;
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Update()
     {

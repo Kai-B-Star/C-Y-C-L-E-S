@@ -46,7 +46,6 @@ public class Elevator : MonoBehaviour
             {
                 isOpen = true;
                 confirmationScreen.SetActive(true);
-
             }
             else
             {

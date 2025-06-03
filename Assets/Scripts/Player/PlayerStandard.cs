@@ -13,24 +13,13 @@ public class PlayerStandard : PlayerBase
 
         rigidBody.MovePosition(rigidBody.position + playerMovement * movementSpeed * Time.fixedDeltaTime);
 
-        animator.SetBool("MoveSpeed", isMoving);
+        animator.SetFloat("IsMoving" , Mathf.Abs(playerMovement.x));
 
-        if(playerMovement.x != 0 | playerMovement.y != 0)
+        if (Mathf.Abs(playerMovement.x) > 0.01f)
         {
-            isMoving = true;
-        }
-        else
-        {  
-            isMoving = false;
-        }
-
-        if (playerMovement.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (playerMovement.x < 0)
-        {
-            spriteRenderer.flipX = true;
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * (playerMovement.x > 0 ? 1: -1);
+            transform.localScale = scale;
         }
     }
     #endregion
