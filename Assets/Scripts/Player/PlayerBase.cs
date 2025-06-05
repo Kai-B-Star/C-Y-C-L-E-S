@@ -9,10 +9,11 @@ public class PlayerBase : MonoBehaviour
     protected GameManager gameManager;
     protected Rigidbody2D rigidBody;
     [SerializeField] protected Animator animator;
-    [SerializeField] protected float movementSpeed;
+    protected float movementSpeed = 10;
     protected bool isMoving;
     protected bool isLeft;
     protected bool isRight;
+
     #endregion
 
     #region MonoBehaviour

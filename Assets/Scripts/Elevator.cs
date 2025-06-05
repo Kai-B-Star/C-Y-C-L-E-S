@@ -63,23 +63,21 @@ public class Elevator : MonoBehaviour
             print("1");
             confirmationScreen.SetActive(false);
             rangeCollider.SetActive(false);
-            //move player into elevator (animation)
-            StartCoroutine(ElevatorClose());
+            PlayerToElevator();
             isOpen = false;
             animator.SetBool("DoorOpen", isOpen);
         }
         else if (Input.GetKeyDown(cancelationKey) && isOpen == true)
         {
-            print("2");
             confirmationScreen.SetActive(false);
             isOpen = false;
             animator.SetBool("DoorOpen", isOpen);
             hasBeenTriggered = false;
         }
     }
-    private IEnumerator ElevatorClose()
+    public void PlayerToElevator()
     {
-        yield return new WaitForSeconds(2f);
+        //bringhet thy player to thee elevator
     }
     #endregion
 
