@@ -102,4 +102,3 @@ public class Elevator : MonoBehaviour
     #endregion
 }
 //movement (cutscene maybe?)
-//animation to open and close door

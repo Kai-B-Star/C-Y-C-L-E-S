@@ -7,7 +7,21 @@ public class PlayerShooter : PlayerStandard
     #region Shoot
     protected override void Shoot()
     {
-        //pew pew
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            animator.SetTrigger("IsShooting");
+
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        }
+    }
+    protected override void GunDirection()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        Vector2 directionToMouse = new Vector2(mousePosition.x - firePoint.position.x, mousePosition.y - firePoint.position.y);
+
+        firePoint.up = -directionToMouse;
     }
     #endregion
 }
