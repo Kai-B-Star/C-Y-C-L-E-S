@@ -10,8 +10,8 @@ public class PlayerShooter : PlayerStandard
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             animator.SetTrigger("IsShooting");
-
-            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bullet.GetComponent<Bullet>().GoInDirection(firePoint.up);
         }
     }
     protected override void GunDirection()
@@ -21,7 +21,7 @@ public class PlayerShooter : PlayerStandard
 
         Vector2 directionToMouse = new Vector2(mousePosition.x - firePoint.position.x, mousePosition.y - firePoint.position.y);
 
-        firePoint.up = -directionToMouse;
+        firePoint.up = directionToMouse;
     }
     #endregion
 }

@@ -6,13 +6,17 @@ public class Bullet : MonoBehaviour
 {
     #region Declarations
     private int speed = 5;
-    private Rigidbody2D rigidBody;
+    [SerializeField] private Rigidbody2D rigidBody;
     #endregion
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         Destroy(gameObject, 3);
+    }
+    private void Start()
+    {
+        rigidBody = GetComponent<Rigidbody2D>();
     }
     public void GoInDirection(Vector2 direction)
     {
@@ -25,6 +29,7 @@ public class Bullet : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage();
+            Destroy(gameObject);
         }
     }
 }

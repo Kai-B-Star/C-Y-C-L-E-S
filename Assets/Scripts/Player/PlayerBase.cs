@@ -71,7 +71,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
     public void TakeDamage()
     {
         health--;
-        animator.SetTrigger("Damage");
+        animator.SetTrigger("IsDamaged");
 
         if (health <= 0 && !isDead)
         {

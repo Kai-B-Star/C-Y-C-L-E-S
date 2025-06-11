@@ -1,28 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour, IDamageable
 {
     #region Declarations
-    protected int hp;
     private float minimumDis = 100;
-    protected float speed;
+    [SerializeField] protected int hp; 
+    [SerializeField] protected float speed;
     [SerializeField] private Transform target;
     [SerializeField] private GameObject deathExplosion;
     [SerializeField] private GameObject enemyTrail;
-    private bool canTrail;
+    private Animator animator;
+    private float spawnRate = 0.5f;
     #endregion
 
+    private void Awake()
+    {
+        InvokeRepeating("LeaveTrail", 0, spawnRate);
+        animator = GetComponent<Animator>();
+    }
     private void Start()
     {
         target = GameObject.Find("Player").transform;
+        SetStats();
     }
     private void Update()
     {
         Move();
-        StartCoroutine(TrailCooldown());
     }
     public void Move()
     {
@@ -37,26 +44,17 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public void TakeDamage()
     {
         hp --;
+        animator.SetTrigger("IsDamaged");
 
         if (hp <= 0)
         {
             Destroy(gameObject);
-            Instantiate(deathExplosion);
+            Instantiate(deathExplosion, transform.position, transform.rotation);
         }
-    }
-    private IEnumerator TrailCooldown()
-    {
-        canTrail = false;
-        yield return new WaitForSeconds(4f);
-        canTrail = true;
-        LeaveTrail();
-        yield return new WaitForSeconds(2f);
-        canTrail = false;
     }
     private void LeaveTrail()
     {
-        Instantiate(enemyTrail);
-        Destroy(enemyTrail, 10);
+        Instantiate(enemyTrail, transform.position, transform.rotation);
     }
 
     protected virtual void SetStats()
