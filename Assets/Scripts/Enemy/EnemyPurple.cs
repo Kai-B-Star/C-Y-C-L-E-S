@@ -6,7 +6,8 @@ public class EnemyPurple : EnemyBase
 {
     protected override void SetStats()
     {
-        hp = 1;
+        //speedy one
+        hp = 2;
         speed = 5;
     }
 }

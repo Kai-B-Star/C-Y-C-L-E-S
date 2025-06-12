@@ -110,3 +110,4 @@ public class UIManager : MonoBehaviour
 
 //scene transition logic (main menu done)
 //grab GameManager events and show respective panels (pause done)
+//hp system

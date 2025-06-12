@@ -6,7 +6,8 @@ public class EnemyRed : EnemyBase
 {
     protected override void SetStats()
     {
-        hp = 1;
+        //tank small one
+        hp = 8;
         speed = 1;
     }
 }
