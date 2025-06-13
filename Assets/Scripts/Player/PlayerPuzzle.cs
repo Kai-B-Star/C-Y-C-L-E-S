@@ -20,8 +20,7 @@ public class PlayerPuzzle : PlayerBase
 
         rigidBody.velocity = new Vector2(horizontalInput * movementSpeed, rigidBody.velocity.y);
 
-        animator.SetFloat("MoveSpeed", Mathf.Abs(horizontalInput));
-        animator.SetBool("IsGrounded", isGrounded);
+        animator.SetFloat("IsMoving", Mathf.Abs(horizontalInput));
 
         if (Mathf.Abs(horizontalInput) > 0.01f)
         {

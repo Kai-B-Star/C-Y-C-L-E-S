@@ -182,6 +182,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5506632604027935429, guid: a582cffb2f6a8244fab73a6cec152e8f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506632604027935429, guid: a582cffb2f6a8244fab73a6cec152e8f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506632604027935429, guid: a582cffb2f6a8244fab73a6cec152e8f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506632604027935429, guid: a582cffb2f6a8244fab73a6cec152e8f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506632604027935429, guid: a582cffb2f6a8244fab73a6cec152e8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5850200850366439074, guid: a582cffb2f6a8244fab73a6cec152e8f, type: 3}
       propertyPath: m_Name
       value: ArmDown

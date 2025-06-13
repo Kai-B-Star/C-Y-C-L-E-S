@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour
     private bool isPaused;
     private bool inPuzzle;
     private UIManager uiManager;
-    [SerializeField] private GameObject playerCam;
-    [SerializeField] private GameObject puzzleCam;
+    [SerializeField] private GameObject mainGame;
     #endregion
 
     #region MonoBehaviour
@@ -29,8 +28,6 @@ public class GameManager : MonoBehaviour
     {
         uiManager = UIManager.instance;
         isPaused = false;
-        playerCam.SetActive(true);
-        puzzleCam.SetActive(false);
     }
     private void Update()
     {
@@ -72,20 +69,19 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region Camera
-    private void CameraSwap()
-    {
-        //if outside puzzle, player cam (bool?)
-        //if inside puzzle, puzzle cam
-    }
-    #endregion
-
     #region Puzzle
-    private void InPuzzle()
+    private void IntoPuzzle()
     {
         inPuzzle = true;
         uiManager.PickPuzzle();
+        mainGame.SetActive(false);
         //make normal player freeze and puzzle player move
+        //if puzzle active, dialogue disabled
+    }
+    private void OutOfPuzzle()
+    {
+        inPuzzle = false;
+        mainGame.SetActive(true);
     }
     #endregion
 }

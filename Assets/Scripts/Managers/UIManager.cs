@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour
     public void PickPuzzle()
     {
         pauseButton.SetActive(false);
-        if(is404)//dialogue is happening for this to be true
+        if(is404)
         {
             ShowPuzzle(PuzzleScreens.R404);
         }
