@@ -7,6 +7,11 @@ public class UIManager : MonoBehaviour
 {
     #region Declarations
     public static UIManager instance;
+    private bool is404 = false;
+    private bool isNS = false;
+    private bool isPH = false;
+    private bool isPI = false;
+    private bool isNF = false;
 
     [Header("UI Panels")]
     [SerializeField] private GameObject mainMenu;
@@ -15,8 +20,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject credits;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject pauseButton;
+
+    [Header("Puzzles")]
+    [SerializeField] private GameObject r404;
+    [SerializeField] private GameObject NS;
+    [SerializeField] private GameObject PH;
+    [SerializeField] private GameObject PI;
+    [SerializeField] private GameObject NF;
+
     public enum UIScreens { MainMenu, Options, Controls, Credits, Pause }
     private Dictionary<UIScreens, GameObject> uiOrganize;
+
+    public enum PuzzleScreens { R404, RNS, RPH, RPI, RNF}
+    private Dictionary<PuzzleScreens, GameObject> puzzleOrganize;
     #endregion
 
     #region MonoBehaviour
@@ -34,6 +50,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         UIDictionary();
+        PuzzleDictionary();
         if (pauseMenu != null)
         {
            pauseMenu.SetActive(false);
@@ -106,6 +123,54 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    #region Puzzles
+    public void PuzzleDictionary()
+    {
+        puzzleOrganize = new Dictionary<PuzzleScreens, GameObject>();
+        puzzleOrganize.Add(PuzzleScreens.R404, r404);
+        puzzleOrganize.Add(PuzzleScreens.RNS, NS);
+        puzzleOrganize.Add(PuzzleScreens.RPH, PH);
+        puzzleOrganize.Add(PuzzleScreens.RPI, PI);
+        puzzleOrganize.Add(PuzzleScreens.RNF, NF);
+    }
+    public void ShowPuzzle(PuzzleScreens puzzleScreens)
+    {
+        foreach (var screen in uiOrganize.Values)
+        {
+            if (screen != null) screen.SetActive(false);
+        }
+
+        if (puzzleOrganize.ContainsKey(puzzleScreens) && puzzleOrganize[puzzleScreens] != null)
+        {
+            puzzleOrganize[puzzleScreens].SetActive(true);
+        }
+    }
+    public void PickPuzzle()
+    {
+        pauseButton.SetActive(false);
+        if(is404)//dialogue is happening for this to be true
+        {
+            ShowPuzzle(PuzzleScreens.R404);
+        }
+        else if(isNS)
+        {
+            ShowPuzzle(PuzzleScreens.RNS);
+        }
+        else if(isPH)
+        {
+            ShowPuzzle(PuzzleScreens.RPH);
+        }
+        else if(isPI)
+        {
+            ShowPuzzle(PuzzleScreens.RPI);
+        }
+        else if(isNF)
+        {
+            ShowPuzzle(PuzzleScreens.RNF);
+        }
+        //make the puzzle shown match the robot (idk work ur magic)
+    }
+    #endregion
 }
 
 //scene transition logic (main menu done)

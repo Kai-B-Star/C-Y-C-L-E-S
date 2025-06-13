@@ -7,6 +7,5 @@ using UnityEngine;
 public class DialogueBase : ScriptableObject
 {
     [SerializeField] private string[] messages;
-
     public string[] Messages { get => messages; }
 }
