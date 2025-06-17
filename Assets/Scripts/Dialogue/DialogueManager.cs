@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Elevator elevator;
     [SerializeField] private NPC npc;
     [SerializeField] private PlayerRange playerRange;
+    private bool isComputer;
     #endregion
 
     #region MonoBehaviour
@@ -74,9 +75,12 @@ public class DialogueManager : MonoBehaviour
             dialogueBox?.SetActive(false);
             spaceIndicator.SetActive(false);
             player.PlayerUnfreeze();
-            elevator.AddRequirement();
             currentDialogue = null;
-            if (npc.PuzzleDone == false)
+            if (npc.IsY == true)
+            {
+                gameManager.OutOfPuzzle();
+            }
+            if (npc.PuzzleDone == false && npc.IsY == false)
             {
                 gameManager.IntoPuzzle();
             }

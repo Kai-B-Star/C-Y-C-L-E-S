@@ -14,6 +14,7 @@ public class NPC : MonoBehaviour
     [SerializeField] private bool isPH = false;
     [SerializeField] private bool isPI = false;
     [SerializeField] private bool isNF = false;
+    [SerializeField] private bool isY = false;
     [SerializeField] private bool puzzleDone = false;
 
     public bool Is404 { get => is404; set => is404 = value; }
@@ -22,6 +23,7 @@ public class NPC : MonoBehaviour
     public bool IsPI { get => isPI; set => isPI = value; }
     public bool IsNF { get => isNF; set => isNF = value; }
     public bool PuzzleDone { get => puzzleDone; set => puzzleDone = value; }
+    public bool IsY { get => isY; set => isY = value; }
     #endregion
 
     #region MonoBehaviour

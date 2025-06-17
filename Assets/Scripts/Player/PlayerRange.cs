@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerRange : MonoBehaviour
 {
     #region Declarations
-    private bool npcInRange;
     [SerializeField] private NPC npcRange;
 
     public NPC NpcRange { get => npcRange; set => npcRange = value; }
@@ -16,7 +15,6 @@ public class PlayerRange : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<NPC>())
         {
-           npcInRange = true;
            NpcRange = collision.gameObject.GetComponent<NPC>(); ;
         }
     }

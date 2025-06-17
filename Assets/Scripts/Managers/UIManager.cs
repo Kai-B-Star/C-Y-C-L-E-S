@@ -171,7 +171,6 @@ public class UIManager : MonoBehaviour
         {
             ShowPuzzle(PuzzleScreens.RNF);
         }
-        //make the puzzle shown match the robot (idk work ur magic)
     }
     #endregion
 }
@@ -179,3 +178,4 @@ public class UIManager : MonoBehaviour
 //scene transition logic (main menu done)
 //grab GameManager events and show respective panels (pause done)
 //hp system
+//make puzzle disappear

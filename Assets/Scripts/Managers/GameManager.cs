@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private UIManager uiManager;
     [SerializeField] private GameObject mainGame;
     [SerializeField] private NPC npc;
+    [SerializeField] private PlayerRange playerRange;
+    [SerializeField] private Elevator elevator;
     #endregion
 
     #region MonoBehaviour
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         PressPause();
+        npc = playerRange.NpcRange;
     }
     #endregion
 
@@ -78,6 +81,7 @@ public class GameManager : MonoBehaviour
     public void OutOfPuzzle()
     {
         npc.PuzzleDone = true;
+        elevator.AddRequirement();
         mainGame.SetActive(true);
         //auto activate choice dialogue
         //deactivate puzzle
