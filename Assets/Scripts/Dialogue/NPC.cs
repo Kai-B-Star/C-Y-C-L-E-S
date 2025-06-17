@@ -9,6 +9,19 @@ public class NPC : MonoBehaviour
     private bool hasBeenTriggered;
     private DialogueManager dialogueManager;
     [SerializeField] private GameObject rangeCollider;
+    [SerializeField] private bool is404 = false;
+    [SerializeField] private bool isNS = false;
+    [SerializeField] private bool isPH = false;
+    [SerializeField] private bool isPI = false;
+    [SerializeField] private bool isNF = false;
+    [SerializeField] private bool puzzleDone = false;
+
+    public bool Is404 { get => is404; set => is404 = value; }
+    public bool IsNS { get => isNS; set => isNS = value; }
+    public bool IsPH { get => isPH; set => isPH = value; }
+    public bool IsPI { get => isPI; set => isPI = value; }
+    public bool IsNF { get => isNF; set => isNF = value; }
+    public bool PuzzleDone { get => puzzleDone; set => puzzleDone = value; }
     #endregion
 
     #region MonoBehaviour

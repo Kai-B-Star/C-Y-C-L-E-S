@@ -9,12 +9,14 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private Text dialogueMessage;
     [SerializeField] private GameObject spaceIndicator;
-    private UIManager uiManager;
+    private GameManager gameManager;
     private int currentPos;
     private DialogueBase currentDialogue;
     public static DialogueManager instance;
     [SerializeField] private PlayerStandard player;
     [SerializeField] private Elevator elevator;
+    [SerializeField] private NPC npc;
+    [SerializeField] private PlayerRange playerRange;
     #endregion
 
     #region MonoBehaviour
@@ -33,11 +35,12 @@ public class DialogueManager : MonoBehaviour
     }
     private void Start()
     {
-        uiManager = UIManager.instance;
+        gameManager = GameManager.instance;
     }
     private void Update()
     {
         SpaceCheck();
+        npc = playerRange.NpcRange;
     }
     #endregion
 
@@ -73,9 +76,12 @@ public class DialogueManager : MonoBehaviour
             player.PlayerUnfreeze();
             elevator.AddRequirement();
             currentDialogue = null;
+            if (npc.PuzzleDone == false)
+            {
+                gameManager.IntoPuzzle();
+            }
         }
     }
     #endregion
-
 }
 

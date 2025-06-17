@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
     #region Declarations
     public static GameManager instance;
     private bool isPaused;
-    private bool inPuzzle;
     private UIManager uiManager;
     [SerializeField] private GameObject mainGame;
+    [SerializeField] private NPC npc;
     #endregion
 
     #region MonoBehaviour
@@ -70,18 +70,17 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Puzzle
-    private void IntoPuzzle()
+    public void IntoPuzzle()
     {
-        inPuzzle = true;
         uiManager.PickPuzzle();
         mainGame.SetActive(false);
-        //make normal player freeze and puzzle player move
-        //if puzzle active, dialogue disabled
     }
-    private void OutOfPuzzle()
+    public void OutOfPuzzle()
     {
-        inPuzzle = false;
+        npc.PuzzleDone = true;
         mainGame.SetActive(true);
+        //auto activate choice dialogue
+        //deactivate puzzle
     }
     #endregion
 }

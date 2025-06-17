@@ -7,11 +7,7 @@ public class UIManager : MonoBehaviour
 {
     #region Declarations
     public static UIManager instance;
-    private bool is404 = false;
-    private bool isNS = false;
-    private bool isPH = false;
-    private bool isPI = false;
-    private bool isNF = false;
+    
 
     [Header("UI Panels")]
     [SerializeField] private GameObject mainMenu;
@@ -28,6 +24,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PI;
     [SerializeField] private GameObject NF;
 
+    [SerializeField] private NPC npc;
+    [SerializeField] private PlayerRange playerRange;
     public enum UIScreens { MainMenu, Options, Controls, Credits, Pause }
     private Dictionary<UIScreens, GameObject> uiOrganize;
 
@@ -55,6 +53,10 @@ public class UIManager : MonoBehaviour
         {
            pauseMenu.SetActive(false);
         }
+    }
+    private void Update()
+    {
+        npc = playerRange.NpcRange;
     }
     #endregion
 
@@ -148,23 +150,24 @@ public class UIManager : MonoBehaviour
     public void PickPuzzle()
     {
         pauseButton.SetActive(false);
-        if(is404)
+        if (npc.Is404)
         {
+            print("404");
             ShowPuzzle(PuzzleScreens.R404);
         }
-        else if(isNS)
+        else if (npc.IsNS)
         {
             ShowPuzzle(PuzzleScreens.RNS);
         }
-        else if(isPH)
+        else if (npc.IsPH)
         {
             ShowPuzzle(PuzzleScreens.RPH);
         }
-        else if(isPI)
+        else if (npc.IsPI)
         {
             ShowPuzzle(PuzzleScreens.RPI);
         }
-        else if(isNF)
+        else if (npc.IsNF)
         {
             ShowPuzzle(PuzzleScreens.RNF);
         }

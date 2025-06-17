@@ -36,7 +36,7 @@ public class Interactable: MonoBehaviour
     #region OnTrigger2D
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerStandard>())
+        if (collision.gameObject.GetComponent<PlayerBase>())
         {
             isInRange = true;
             notify.SetActive(true);
@@ -44,7 +44,7 @@ public class Interactable: MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<PlayerStandard>())
+        if(collision.gameObject.GetComponent<PlayerBase>())
         {
             isInRange = false;
             notify.SetActive(false);
