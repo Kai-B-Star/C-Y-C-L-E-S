@@ -172,10 +172,18 @@ public class UIManager : MonoBehaviour
             ShowPuzzle(PuzzleScreens.RNF);
         }
     }
+    public void HidePuzzle()
+    {
+        pauseButton.SetActive(true);
+        r404.SetActive(false);
+        NS.SetActive(false);
+        PH.SetActive(false);
+        PI.SetActive(false);
+        NF.SetActive(false);
+    }
     #endregion
 }
 
 //scene transition logic (main menu done)
 //grab GameManager events and show respective panels (pause done)
 //hp system
-//make puzzle disappear

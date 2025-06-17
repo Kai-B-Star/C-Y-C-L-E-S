@@ -83,8 +83,8 @@ public class GameManager : MonoBehaviour
         npc.PuzzleDone = true;
         elevator.AddRequirement();
         mainGame.SetActive(true);
+        uiManager.HidePuzzle();
         //auto activate choice dialogue
-        //deactivate puzzle
     }
     #endregion
 }
