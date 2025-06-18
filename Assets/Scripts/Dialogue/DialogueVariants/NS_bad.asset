@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ee73f39cb723840a7b8e8826b33a69, type: 3}
   m_Name: NS_bad
   m_EditorClassIdentifier: 
-  messages: []
+  messages:
+  - 

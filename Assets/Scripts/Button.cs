@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    //connect to gameManager, OutOfPuzzle
+    #region Declarations
     private bool hasBeenTriggered;
     private GameManager gameManager;
+    #endregion
 
+    #region MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.instance;
     }
+    #endregion
+
+    #region Button
     public void ButtonClick()
     {
         if (!hasBeenTriggered)
@@ -20,4 +25,5 @@ public class Button : MonoBehaviour
             gameManager.OutOfPuzzle();
         }
     }
+    #endregion
 }

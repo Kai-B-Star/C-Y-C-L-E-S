@@ -17,7 +17,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Elevator elevator;
     [SerializeField] private NPC npc;
     [SerializeField] private PlayerRange playerRange;
-    private bool isComputer;
     #endregion
 
     #region MonoBehaviour
