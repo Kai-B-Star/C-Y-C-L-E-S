@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject controls;
     [SerializeField] private GameObject credits;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject demoScreen;
     [SerializeField] private GameObject pauseButton;
 
     [Header("Puzzles")]
@@ -26,7 +27,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private NPC npc;
     [SerializeField] private PlayerRange playerRange;
-    public enum UIScreens { MainMenu, Options, Controls, Credits, Pause }
+    public enum UIScreens { MainMenu, Options, Controls, Credits, Pause, Demo }
     private Dictionary<UIScreens, GameObject> uiOrganize;
 
     public enum PuzzleScreens { R404, RNS, RPH, RPI, RNF}
@@ -56,7 +57,10 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        npc = playerRange.NpcRange;
+        if (playerRange != null)
+        {
+            npc = playerRange.NpcRange;
+        }
     }
     #endregion
 
@@ -69,6 +73,7 @@ public class UIManager : MonoBehaviour
         uiOrganize.Add(UIScreens.Controls, controls);
         uiOrganize.Add(UIScreens.Credits, credits);
         uiOrganize.Add(UIScreens.Pause, pauseMenu);
+        uiOrganize.Add(UIScreens.Demo, demoScreen);
     }
     public void ShowScreen(UIScreens mainScreens)
     {
@@ -180,6 +185,13 @@ public class UIManager : MonoBehaviour
         PH.SetActive(false);
         PI.SetActive(false);
         NF.SetActive(false);
+    }
+    #endregion
+
+    #region Demo
+    public void DemoScreen()
+    {
+        ShowScreen(UIScreens.Demo);
     }
     #endregion
 }

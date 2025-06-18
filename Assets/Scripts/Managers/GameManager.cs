@@ -34,7 +34,10 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         PressPause();
-        npc = playerRange.NpcRange;
+        if (playerRange != null)
+        {
+            npc = playerRange.NpcRange;
+        }
     }
     #endregion
 

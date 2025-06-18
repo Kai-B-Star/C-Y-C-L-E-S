@@ -12,20 +12,20 @@ public class Lever : MonoBehaviour
     #region Lever
     public void Wall()
     {
-        if(wall == null)
-        {
-            WallAppear();
-        }
-        else if(wall != null)
+        if(wall != null)
         {
             WallGone();
         }
+        else if(wall == null)
+        {
+            WallAppear();
+        }
     }
-    private void WallGone()
+    public void WallGone()
     {
         wall.SetActive(false);
     }
-    private void WallAppear()
+    public void WallAppear()
     {
         wall.SetActive(true);
     }

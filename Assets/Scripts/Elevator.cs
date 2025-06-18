@@ -8,6 +8,7 @@ public class Elevator : MonoBehaviour
     private bool hasBeenTriggered;
     private bool requirementsMet;
     private bool isOpen;
+    [SerializeField] private bool isLastElevator;
     [SerializeField] private KeyCode confirmationKey;
     [SerializeField] private KeyCode cancelationKey;
     [SerializeField] private GameObject confirmationScreen;
@@ -16,6 +17,7 @@ public class Elevator : MonoBehaviour
     [SerializeField] private int requirementsAmount;
     [SerializeField] private int currentRequirements;
     [SerializeField] private GameObject rangeCollider;
+    private UIManager uiManager;
     #endregion
 
     #region MonoBehaviour
@@ -27,6 +29,7 @@ public class Elevator : MonoBehaviour
         confirmationScreen.SetActive(false);
         requirementScreen.SetActive(false);
         currentRequirements = 0;
+        uiManager = UIManager.instance;
     }
     private void Update()
     {
@@ -63,9 +66,12 @@ public class Elevator : MonoBehaviour
             print("1");
             confirmationScreen.SetActive(false);
             rangeCollider.SetActive(false);
-            PlayerToElevator();
             isOpen = false;
             animator.SetBool("DoorOpen", isOpen);
+            if(isLastElevator)
+            {
+                uiManager.DemoScreen();
+            }
         }
         else if (Input.GetKeyDown(cancelationKey) && isOpen == true)
         {
@@ -74,10 +80,6 @@ public class Elevator : MonoBehaviour
             animator.SetBool("DoorOpen", isOpen);
             hasBeenTriggered = false;
         }
-    }
-    public void PlayerToElevator()
-    {
-        //bringhet thy player to thee elevator
     }
     #endregion
 
