@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody2D rigidBody;
     #endregion
 
+    #region MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -18,6 +19,9 @@ public class Bullet : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
     }
+    #endregion
+
+    #region Bullet
     public void GoInDirection(Vector2 direction)
     {
         rigidBody.AddForce(direction * speed, ForceMode2D.Impulse);
@@ -32,4 +36,5 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #endregion
 }

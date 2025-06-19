@@ -1,13 +1,17 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using static System.Net.Mime.MediaTypeNames;
 using Application = UnityEngine.Application;
+using Image = UnityEngine.UI.Image;
 
 public class UIManager : MonoBehaviour
 {
     #region Declarations
     public static UIManager instance;
-    
 
     [Header("UI Panels")]
     [SerializeField] private GameObject mainMenu;
@@ -15,7 +19,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject controls;
     [SerializeField] private GameObject credits;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject choiceScreen;
+    [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject demoScreen;
+    //[SerializeField] private GameObject murdererEnding;
+    //[SerializeField] private GameObject saviourEnding;
     [SerializeField] private GameObject pauseButton;
 
     [Header("Puzzles")]
@@ -25,13 +33,24 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject PI;
     [SerializeField] private GameObject NF;
 
+    [Header("HP")]
+    [SerializeField] private Image[] hearts;
+    [SerializeField] private Sprite fullHeart;
+    [SerializeField] private Sprite emptyHeart;
+
+    [Header("Other")]
     [SerializeField] private NPC npc;
     [SerializeField] private PlayerRange playerRange;
-    public enum UIScreens { MainMenu, Options, Controls, Credits, Pause, Demo }
+    [SerializeField] private PlayerBase player;
+    private GameManager gameManager;
+    public enum UIScreens { MainMenu, Options, Controls, Credits, Pause, Choice, Demo /*Murderer, Saviour*/ }
     private Dictionary<UIScreens, GameObject> uiOrganize;
 
     public enum PuzzleScreens { R404, RNS, RPH, RPI, RNF}
     private Dictionary<PuzzleScreens, GameObject> puzzleOrganize;
+
+    public GameObject ChoiceScreen { get => choiceScreen; set => choiceScreen = value; }
+    public GameObject DeathScreen { get => deathScreen; set => deathScreen = value; }
     #endregion
 
     #region MonoBehaviour
@@ -45,6 +64,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        gameManager = GameManager.instance;
     }
     private void Start()
     {
@@ -64,7 +84,7 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    #region MainMenu
+    #region Screens
     public void UIDictionary()
     {
         uiOrganize = new Dictionary<UIScreens, GameObject>();
@@ -73,7 +93,10 @@ public class UIManager : MonoBehaviour
         uiOrganize.Add(UIScreens.Controls, controls);
         uiOrganize.Add(UIScreens.Credits, credits);
         uiOrganize.Add(UIScreens.Pause, pauseMenu);
+        uiOrganize.Add(UIScreens.Choice, ChoiceScreen);
         uiOrganize.Add(UIScreens.Demo, demoScreen);
+        //uiOrganize.Add(UIScreens.Murderer, murdererEnding);
+        //uiOrganize.Add(UIScreens.Saviour, saviourEnding);
     }
     public void ShowScreen(UIScreens mainScreens)
     {
@@ -86,6 +109,10 @@ public class UIManager : MonoBehaviour
         {
             uiOrganize[mainScreens].SetActive(true);
         }
+    }
+    public void StartGame()
+    {
+        SceneManager.LoadScene("FirstRoom");
     }
     public void MainMenu()
     {
@@ -102,6 +129,10 @@ public class UIManager : MonoBehaviour
     public void Credits()
     {
         ShowScreen(UIScreens.Credits);
+    }
+    public void NextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void Quit()
     {
@@ -188,14 +219,52 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    #region Choice
+    public void Choice()
+    {
+        ShowScreen(UIScreens.Choice);
+    }
+    #endregion
+
+    #region HP
+    public void UpdateHP()
+    {
+        foreach (Image heart in hearts)
+        {
+            heart.sprite = emptyHeart;
+        }
+        for (int i = 0; i < player.Health; i++)
+        {
+            hearts[i].sprite = fullHeart;
+        }
+    }
+    #endregion
+
     #region Demo
     public void DemoScreen()
     {
         ShowScreen(UIScreens.Demo);
     }
+    //public void SecretEndings()
+    //{
+    //    if (gameManager.KillCount > gameManager.SaveCount)
+    //    {
+    //        ShowScreen(UIScreens.Murderer);
+    //    }
+    //    else if(gameManager.KillCount < gameManager.SaveCount)
+    //    {
+    //        ShowScreen(UIScreens.Saviour);
+    //    }
+    //    StartCoroutine(SecretEndingTimer());
+    //}
+
+    //private IEnumerator SecretEndingTimer()
+    //{
+    //    yield return new WaitForSeconds(10f);
+    //    murdererEnding.SetActive(false);
+    //    saviourEnding.SetActive(false);
+    //}
     #endregion
 }
 
-//scene transition logic (main menu done)
-//grab GameManager events and show respective panels (pause done)
-//hp system
+//SHOW SCREENS BEFORE THE "DEMO OVER" THAT SAY "MURDERER" or "SAVIOUR" (logic done, just gotta make the screens) (OPTIONAL, THAT MEANS HAVING TO SAVE DATA/INFORMATION)

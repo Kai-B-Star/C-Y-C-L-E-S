@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IDamageable 
 {
+    #region Interface
     void TakeDamage();
+    #endregion
 }

@@ -6,6 +6,8 @@ public class NPC : MonoBehaviour
 {
     #region Declarations
     [SerializeField] private DialogueBase dialogueOnClick;
+    [SerializeField] private DialogueBase badVersion;
+    [SerializeField] private DialogueBase goodVersion;
     private bool hasBeenTriggered;
     private DialogueManager dialogueManager;
     [SerializeField] private GameObject rangeCollider;
@@ -24,6 +26,11 @@ public class NPC : MonoBehaviour
     public bool IsNF { get => isNF; set => isNF = value; }
     public bool PuzzleDone { get => puzzleDone; set => puzzleDone = value; }
     public bool IsY { get => isY; set => isY = value; }
+    public DialogueBase DialogueOnClick { get => dialogueOnClick; set => dialogueOnClick = value; }
+    public DialogueBase BadVersion { get => badVersion; set => badVersion = value; }
+    public DialogueBase GoodVersion { get => goodVersion; set => goodVersion = value; }
+    public bool HasBeenTriggered { get => hasBeenTriggered; set => hasBeenTriggered = value; }
+    public GameObject RangeCollider { get => rangeCollider; set => rangeCollider = value; }
     #endregion
 
     #region MonoBehaviour
@@ -36,11 +43,11 @@ public class NPC : MonoBehaviour
     #region NPCTrigger
     public void NPCSpeak()
     {
-        if (!hasBeenTriggered)
+        if (!HasBeenTriggered)
         {
-            hasBeenTriggered = true;
-            dialogueManager.BeginDialogue(dialogueOnClick);
-            rangeCollider.SetActive(false);
+            HasBeenTriggered = true;
+            dialogueManager.BeginDialogue(DialogueOnClick);
+            RangeCollider.SetActive(false);
         }
     }
     #endregion

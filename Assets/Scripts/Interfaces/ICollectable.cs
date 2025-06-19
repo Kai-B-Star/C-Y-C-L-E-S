@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface ICollectable
 {
+    #region Interface
     void Collect();
+    #endregion
 }

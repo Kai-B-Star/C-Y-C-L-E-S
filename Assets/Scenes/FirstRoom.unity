@@ -1400,6 +1400,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueOnClick: {fileID: 11400000, guid: fdbb1db759ea9fe4091a34a9ccad3b18, type: 2}
+  badVersion: {fileID: 0}
+  goodVersion: {fileID: 0}
   rangeCollider: {fileID: 223206951}
   is404: 0
   isNS: 0
@@ -1732,6 +1734,8 @@ MonoBehaviour:
   controls: {fileID: 1155199507}
   credits: {fileID: 0}
   pauseMenu: {fileID: 966303917}
+  choiceScreen: {fileID: 0}
+  demoScreen: {fileID: 0}
   pauseButton: {fileID: 245908029}
   r404: {fileID: 0}
   NS: {fileID: 0}
@@ -3757,6 +3761,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1129774003355190158, guid: 4be110383f0530a4dbe99f8afa1e59e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1719490055412568041, guid: 4be110383f0530a4dbe99f8afa1e59e9, type: 3}
       propertyPath: m_Name
       value: Elevator
@@ -3764,6 +3772,10 @@ PrefabInstance:
     - target: {fileID: 2241468460416837571, guid: 4be110383f0530a4dbe99f8afa1e59e9, type: 3}
       propertyPath: requirementsAmount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838318536443364981, guid: 4be110383f0530a4dbe99f8afa1e59e9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.26
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

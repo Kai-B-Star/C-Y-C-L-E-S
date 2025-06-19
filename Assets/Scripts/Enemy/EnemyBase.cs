@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
@@ -14,9 +15,11 @@ public class EnemyBase : MonoBehaviour, IDamageable
     [SerializeField] private GameObject deathExplosion;
     [SerializeField] private GameObject enemyTrail;
     private Animator animator;
+    [SerializeField] private Elevator elevator;
     private float spawnRate = 0.5f;
     #endregion
 
+    #region MonoBehaviour
     private void Awake()
     {
         InvokeRepeating("LeaveTrail", 0, spawnRate);
@@ -31,6 +34,9 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         Move();
     }
+    #endregion
+
+    #region Movement
     public void Move()
     {
         float distance = Vector2.Distance(target.position, transform.position);
@@ -41,6 +47,13 @@ public class EnemyBase : MonoBehaviour, IDamageable
             transform.up = target.position - transform.position;
         }
     }
+    private void LeaveTrail()
+    {
+        Instantiate(enemyTrail, transform.position, transform.rotation);
+    }
+    #endregion
+
+    #region HP
     public void TakeDamage()
     {
         hp --;
@@ -49,14 +62,14 @@ public class EnemyBase : MonoBehaviour, IDamageable
         if (hp <= 0)
         {
             Destroy(gameObject);
+            elevator.AddRequirement();
             Instantiate(deathExplosion, transform.position, transform.rotation);
         }
     }
-    private void LeaveTrail()
-    {
-        Instantiate(enemyTrail, transform.position, transform.rotation);
-    }
+    #endregion
 
+    #region Virtuals
     protected virtual void SetStats()
     { }
+    #endregion
 }

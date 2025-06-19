@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBase : MonoBehaviour, IDamageable
+public class PlayerBase : MonoBehaviour
 {
     #region Declarations
     protected UIManager uiManager;
@@ -11,12 +11,11 @@ public class PlayerBase : MonoBehaviour, IDamageable
     [SerializeField] protected Animator animator;
     protected float movementSpeed = 10;
     protected bool isMoving;
-    protected bool isLeft;
-    protected bool isRight;
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform firePoint;
     protected int health = 3;
-    private bool isDead;
+
+    public int Health { get => health; set => health = value; }
     #endregion
 
     #region MonoBehaviour
@@ -48,10 +47,11 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        EnemyBase enemy = collision.transform.GetComponent<EnemyBase>();
+        EnemyBase enemy = collision.gameObject.GetComponent<EnemyBase>();
         if (enemy != null)
         {
-            TakeDamage();
+            gameManager.LoseLives();
+            animator.SetTrigger("IsDamaged");
         }
     }
     #endregion
@@ -64,23 +64,6 @@ public class PlayerBase : MonoBehaviour, IDamageable
     public void PlayerUnfreeze()
     {
         movementSpeed = 10;
-    }
-    #endregion
-
-    #region Damage
-    public void TakeDamage()
-    {
-        health--;
-        animator.SetTrigger("IsDamaged");
-
-        if (health <= 0 && !isDead)
-        {
-            isDead = true;
-        }
-        else
-        {
-            isDead = false;
-        }
     }
     #endregion
 

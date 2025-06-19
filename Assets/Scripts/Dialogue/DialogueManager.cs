@@ -83,8 +83,19 @@ public class DialogueManager : MonoBehaviour
             {
                 gameManager.IntoPuzzle();
             }
+            else if (npc.PuzzleDone == true) //add condition for bad outcome
+            {
+                //animations
+                //showing death sprites (like the fallen one)
+            }
+            else if (npc.PuzzleDone == true) //add condition for good outcome
+            {
+                //animations
+                //show happy sprites
+            }
         }
     }
     #endregion
 }
 
+//everything to do with design is still left to do after a choice has been made HERE

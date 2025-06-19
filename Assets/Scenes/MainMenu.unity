@@ -203,7 +203,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 46121709}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 983626745}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &46121709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,6 +1121,17 @@ MonoBehaviour:
   options: {fileID: 1892747004}
   controls: {fileID: 368638281}
   credits: {fileID: 1795302534}
+  pauseMenu: {fileID: 0}
+  choiceScreen: {fileID: 0}
+  demoScreen: {fileID: 0}
+  pauseButton: {fileID: 0}
+  r404: {fileID: 0}
+  NS: {fileID: 0}
+  PH: {fileID: 0}
+  PI: {fileID: 0}
+  NF: {fileID: 0}
+  npc: {fileID: 0}
+  playerRange: {fileID: 0}
 --- !u!4 &983626746
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,6 +1440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d416c9a476d01a5458c0fe63df1bba5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainGame: {fileID: 0}
+  npc: {fileID: 0}
+  playerRange: {fileID: 0}
+  elevator: {fileID: 0}
 --- !u!4 &1264029730
 Transform:
   m_ObjectHideFlags: 0

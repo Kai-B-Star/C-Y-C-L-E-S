@@ -72,6 +72,10 @@ public class Elevator : MonoBehaviour
             {
                 uiManager.DemoScreen();
             }
+            else
+            {
+                uiManager.NextScene();
+            }
         }
         else if (Input.GetKeyDown(cancelationKey) && isOpen == true)
         {
@@ -103,4 +107,3 @@ public class Elevator : MonoBehaviour
     }
     #endregion
 }
-//movement (cutscene maybe?)
