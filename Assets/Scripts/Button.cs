@@ -8,9 +8,7 @@ public class Button : MonoBehaviour
     private bool hasBeenTriggered;
     private GameManager gameManager;
     private UIManager uiManager;
-    [SerializeField] private bool isMoving;
     [SerializeField] private GameObject connection;
-    private Rigidbody2D rigidBody;
     #endregion
 
     #region MonoBehaviour
@@ -18,10 +16,6 @@ public class Button : MonoBehaviour
     {
         gameManager = GameManager.instance;
         uiManager = UIManager.instance;
-        if(rigidBody != null)
-        {
-            rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        }
     }
     #endregion
 
@@ -35,25 +29,4 @@ public class Button : MonoBehaviour
         }
     }
     #endregion
-
-    #region Moving
-    public void MovingBall()
-    {
-        if(isMoving)
-        {
-            //disable button function
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //make it touch connector
-        if(collision != null)
-        {
-            //make rb poof
-            //enable button function
-        }
-    }
-    #endregion
 }
-
-//things to fix in MOVING for PI

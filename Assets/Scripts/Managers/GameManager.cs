@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         uiManager = UIManager.instance;
         KillCount = 0;
         SaveCount = 0;
-        Resume();
+        Time.timeScale = 1;
     }
     private void Update()
     {

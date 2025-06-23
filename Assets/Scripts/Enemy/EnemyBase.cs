@@ -49,7 +49,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
     }
     private void LeaveTrail()
     {
-        Instantiate(enemyTrail, transform.position, transform.rotation);
+        GameObject trail = Instantiate(enemyTrail, transform.position, transform.rotation);
+        Destroy(trail, 3f);
     }
     #endregion
 
