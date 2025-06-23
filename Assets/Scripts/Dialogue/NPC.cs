@@ -11,6 +11,7 @@ public class NPC : MonoBehaviour
     private bool hasBeenTriggered;
     private DialogueManager dialogueManager;
     [SerializeField] private GameObject rangeCollider;
+    [SerializeField] private GameObject mandatoryRange;
     [SerializeField] private bool is404 = false;
     [SerializeField] private bool isNS = false;
     [SerializeField] private bool isPH = false;
@@ -31,6 +32,7 @@ public class NPC : MonoBehaviour
     public DialogueBase GoodVersion { get => goodVersion; set => goodVersion = value; }
     public bool HasBeenTriggered { get => hasBeenTriggered; set => hasBeenTriggered = value; }
     public GameObject RangeCollider { get => rangeCollider; set => rangeCollider = value; }
+    public GameObject MandatoryRange { get => mandatoryRange; set => mandatoryRange = value; }
     #endregion
 
     #region MonoBehaviour

@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.1, y: 4.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,6 +105,7 @@ MonoBehaviour:
   target: {fileID: 0}
   deathExplosion: {fileID: 626431518743092448, guid: 5f2b009be99a118488e5e0836d5a4d74, type: 3}
   enemyTrail: {fileID: 1935636323140240775, guid: 16970376f47a2c74d8229f96ac18295e, type: 3}
+  elevator: {fileID: 0}
 --- !u!61 &7937892022210955905
 BoxCollider2D:
   m_ObjectHideFlags: 0

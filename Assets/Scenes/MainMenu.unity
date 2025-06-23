@@ -1123,15 +1123,21 @@ MonoBehaviour:
   credits: {fileID: 1795302534}
   pauseMenu: {fileID: 0}
   choiceScreen: {fileID: 0}
+  deathScreen: {fileID: 0}
   demoScreen: {fileID: 0}
+  health: {fileID: 0}
   pauseButton: {fileID: 0}
   r404: {fileID: 0}
   NS: {fileID: 0}
   PH: {fileID: 0}
   PI: {fileID: 0}
   NF: {fileID: 0}
+  hearts: []
+  fullHeart: {fileID: 0}
+  emptyHeart: {fileID: 0}
   npc: {fileID: 0}
   playerRange: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &983626746
 Transform:
   m_ObjectHideFlags: 0
@@ -1444,6 +1450,8 @@ MonoBehaviour:
   npc: {fileID: 0}
   playerRange: {fileID: 0}
   elevator: {fileID: 0}
+  player: {fileID: 0}
+  playerBase: {fileID: 0}
 --- !u!4 &1264029730
 Transform:
   m_ObjectHideFlags: 0

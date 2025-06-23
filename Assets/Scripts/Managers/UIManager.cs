@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject choiceScreen;
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject demoScreen;
+    [SerializeField] private GameObject health;
     //[SerializeField] private GameObject murdererEnding;
     //[SerializeField] private GameObject saviourEnding;
     [SerializeField] private GameObject pauseButton;
@@ -243,6 +244,7 @@ public class UIManager : MonoBehaviour
     #region Demo
     public void DemoScreen()
     {
+        health.SetActive(false);
         ShowScreen(UIScreens.Demo);
     }
     //public void SecretEndings()

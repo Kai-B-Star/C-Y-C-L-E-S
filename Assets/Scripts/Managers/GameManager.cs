@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Elevator elevator;
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerBase playerBase;
+    [SerializeField] private Interactable range;
 
     public int KillCount { get => killCount; set => killCount = value; }
     public int SaveCount { get => saveCount; set => saveCount = value; }
@@ -46,6 +47,10 @@ public class GameManager : MonoBehaviour
         if (playerRange != null)
         {
             npc = playerRange.NpcRange;
+        }
+        if (npc != null)
+        {
+            range = npc.GetComponentInChildren<Interactable>();
         }
     }
     #endregion
@@ -99,6 +104,11 @@ public class GameManager : MonoBehaviour
         npc.PuzzleDone = true;
         elevator.AddRequirement();  
         player.SetActive(true);
+        range.Notify.SetActive(false);
+        if(npc.Is404 == false)
+        {
+            npc.MandatoryRange.SetActive(true);
+        }
     }
     #endregion
 
@@ -106,19 +116,21 @@ public class GameManager : MonoBehaviour
     public void Deactivate()
     {
         uiManager.ChoiceScreen.SetActive(false);
-        npc.DialogueOnClick = npc.BadVersion;
-        KillCount++;
         uiManager.HidePuzzle();
         OutOfPuzzle();
+        npc.DialogueOnClick = npc.BadVersion;
+        KillCount++;
+        
         //trigger death :( animation
     }
     public void Spare()
     {
         uiManager.ChoiceScreen.SetActive(false);
-        npc.DialogueOnClick = npc.BadVersion;
-        SaveCount++;
         uiManager.HidePuzzle();
         OutOfPuzzle();
+        npc.DialogueOnClick = npc.GoodVersion;
+        SaveCount++;
+      
         //trigger happy :) animation
     }
     #endregion

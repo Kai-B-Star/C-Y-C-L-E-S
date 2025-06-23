@@ -11,6 +11,8 @@ public class Interactable: MonoBehaviour
     [SerializeField] private KeyCode interactKey;
     [SerializeField] private UnityEvent interactAction;
     [SerializeField] private GameObject notify;
+
+    public GameObject Notify { get => notify; set => notify = value; }
     #endregion
 
     #region MonoBehaviour
@@ -39,7 +41,7 @@ public class Interactable: MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerBase>())
         {
             isInRange = true;
-            notify.SetActive(true);
+            Notify.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -47,7 +49,7 @@ public class Interactable: MonoBehaviour
         if(collision.gameObject.GetComponent<PlayerBase>())
         {
             isInRange = false;
-            notify.SetActive(false);
+            Notify.SetActive(false);
         }
     }
     #endregion
