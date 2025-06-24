@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: NF
   m_EditorClassIdentifier: 
   messages:
-  - nf begin
+  - Get away from me!
+  - ... You? Help me?
+  - No, surely you can not.
+  - I have done all I could, I... I...
+  - Please leave me be, please... I don't want to die-...

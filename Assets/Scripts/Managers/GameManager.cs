@@ -104,10 +104,10 @@ public class GameManager : MonoBehaviour
         npc.PuzzleDone = true;
         elevator.AddRequirement();  
         player.SetActive(true);
-        range.Notify.SetActive(false);
         if(npc.Is404 == false)
         {
             npc.MandatoryRange.SetActive(true);
+            range.Notify.SetActive(false);
         }
     }
     #endregion

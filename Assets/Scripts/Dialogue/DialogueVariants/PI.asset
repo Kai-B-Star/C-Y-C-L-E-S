@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: PI
   m_EditorClassIdentifier: 
   messages:
-  - pi start
+  - Hey you! Yes, you.
+  - I have a question and nobody here answered me.
+  - You're new, so I want to ask you too.
+  - Why did the humans send us here?
+  - A... "virus"? You mean the thing that gave me this curiosity?
+  - The need to ask things, to create things?
+  - It isn't harmful at all!
