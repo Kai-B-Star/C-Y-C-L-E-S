@@ -83,19 +83,15 @@ public class DialogueManager : MonoBehaviour
             {
                 gameManager.IntoPuzzle();
             }
-            else if (npc.PuzzleDone == true) //add condition for bad outcome
+            else if (npc.PuzzleDone == true && gameManager.IsDead == true)
             {
-                //animations
-                //showing death sprites (like the fallen one)
+                npc.Animator.SetTrigger("Death");
             }
-            else if (npc.PuzzleDone == true) //add condition for good outcome
+            else if (npc.PuzzleDone == true && gameManager.IsAlive == true)
             {
-                //animations
-                //show happy sprites
+                npc.Animator.SetTrigger("Life");
             }
         }
     }
     #endregion
 }
-
-//everything to do with design is still left to do after a choice has been made HERE
