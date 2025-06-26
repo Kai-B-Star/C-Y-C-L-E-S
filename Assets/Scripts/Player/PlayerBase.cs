@@ -33,6 +33,7 @@ public class PlayerBase : MonoBehaviour
         Jump();
         GroundCheck();
         GunDirection();
+        Run();
     }
     #endregion
 
@@ -77,6 +78,8 @@ public class PlayerBase : MonoBehaviour
     protected virtual void GroundCheck()
     { }
     protected virtual void GunDirection()
+    { }
+    protected virtual void Run()
     { }
     #endregion
 }

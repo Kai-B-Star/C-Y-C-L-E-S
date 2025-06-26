@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerPuzzle : PlayerBase
 {
     #region Declarations
     private bool isGrounded;
+    private bool isRunning;
     [SerializeField] private float jumpForce;
     private float groundCheckDistance = 1.5f;
     [SerializeField] private LayerMask groundLayer;
@@ -27,6 +29,26 @@ public class PlayerPuzzle : PlayerBase
             Vector3 scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x) * (horizontalInput > 0 ? 1 : -1);
             transform.localScale = scale;
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+    }
+
+    protected override void Run()
+    {
+        animator.SetBool("IsRunning", isRunning);
+        if (isGrounded && isMoving && Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isRunning = true;
+            movementSpeed = 15;
+        }
+        if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isRunning = false;
+            movementSpeed = 10;
         }
     }
 #endregion

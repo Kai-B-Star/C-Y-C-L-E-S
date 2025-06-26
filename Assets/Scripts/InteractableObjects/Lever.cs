@@ -7,6 +7,7 @@ public class Lever : MonoBehaviour
     #region Declarations
     [SerializeField] private bool isFloorButton;
     [SerializeField] private bool isElectricLever;
+    [SerializeField] private GameObject box;
     [SerializeField] private GameObject wall;
     [SerializeField] private GameObject lights;
     [SerializeField] private GameObject litBack;
@@ -77,7 +78,7 @@ public class Lever : MonoBehaviour
     #region OnTrigger2D
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(isFloorButton)
+        if(isFloorButton && collision.gameObject == box)
         {
             WallGone();
         }
@@ -85,7 +86,7 @@ public class Lever : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(isFloorButton)
+        if(isFloorButton && collision.gameObject == box)
         {
             WallAppear();
         }
