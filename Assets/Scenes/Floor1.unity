@@ -22147,7 +22147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueOnClick: {fileID: 11400000, guid: 5fd25ae3169b97d43a72a57f0dd4568e, type: 2}
   badVersion: {fileID: 11400000, guid: 0e5eb9d9689e6db43a675bf53184cabd, type: 2}
-  goodVersion: {fileID: 11400000, guid: 0e5eb9d9689e6db43a675bf53184cabd, type: 2}
+  goodVersion: {fileID: 11400000, guid: 8e47a6a7429c2a041a8af9a654307fce, type: 2}
   rangeCollider: {fileID: 2083809621}
   mandatoryRange: {fileID: 2083809621}
   is404: 1
