@@ -17,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Elevator elevator;
     [SerializeField] private NPC npc;
     [SerializeField] private PlayerRange playerRange;
+    [SerializeField] private R404Movement End404;
     #endregion
 
     #region MonoBehaviour
@@ -75,22 +76,30 @@ public class DialogueManager : MonoBehaviour
             spaceIndicator.SetActive(false);
             player.PlayerUnfreeze();
             currentDialogue = null;
-            if (npc.IsY == true)
-            {
-                gameManager.OutOfPuzzle();
-            }
-            if (npc.PuzzleDone == false && npc.IsY == false)
-            {
-                gameManager.IntoPuzzle();
-            }
-            else if (npc.PuzzleDone == true && gameManager.IsDead == true)
-            {
-                npc.Animator.SetTrigger("Death");
-            }
-            else if (npc.PuzzleDone == true && gameManager.IsAlive == true)
-            {
-                npc.Animator.SetTrigger("Life");
-            }
+            DialogueEndOptions();
+        }
+    }
+    private void DialogueEndOptions()
+    {
+        if (npc.IsY == true)
+        {
+            gameManager.OutOfPuzzle();
+        }
+        if (npc.PuzzleDone == false && npc.IsY == false)
+        {
+            gameManager.IntoPuzzle();
+        }
+        else if(npc.PuzzleDone == true && npc.Is404 == true)
+        {
+            End404.StartMoving();
+        }
+        else if (npc.PuzzleDone == true && gameManager.IsDead == true)
+        {
+            npc.Animator.SetTrigger("Death");
+        }
+        else if (npc.PuzzleDone == true && gameManager.IsAlive == true)
+        {
+            npc.Animator.SetTrigger("Life");
         }
     }
     #endregion

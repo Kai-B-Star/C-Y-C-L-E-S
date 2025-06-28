@@ -9,7 +9,7 @@ public class PlayerPuzzle : PlayerBase
     private bool isGrounded;
     private bool isRunning;
     [SerializeField] private float jumpForce;
-    private float groundCheckDistance = 1.5f;
+    private float groundCheckDistance = 0.5f;
     [SerializeField] private LayerMask groundLayer;
 
     public LayerMask GroundLayer { get => groundLayer; set => groundLayer = value; }
