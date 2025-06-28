@@ -23,8 +23,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject deathScreen;
     [SerializeField] private GameObject demoScreen;
     [SerializeField] private GameObject health;
-    //[SerializeField] private GameObject murdererEnding;
-    //[SerializeField] private GameObject saviourEnding;
+    [SerializeField] private GameObject murdererScreen;
+    [SerializeField] private GameObject saviourScreen;
     [SerializeField] private GameObject pauseButton;
 
     [Header("Puzzles")]
@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlayerRange playerRange;
     [SerializeField] private PlayerBase player;
     private GameManager gameManager;
-    public enum UIScreens { MainMenu, Options, Controls, Credits, Pause, Choice, Demo /*Murderer, Saviour*/ }
+    public enum UIScreens { MainMenu, Options, Controls, Credits, Pause, Choice, Demo }
     private Dictionary<UIScreens, GameObject> uiOrganize;
 
     public enum PuzzleScreens { R404, RNS, RPH, RPI, RNF}
@@ -52,6 +52,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject ChoiceScreen { get => choiceScreen; set => choiceScreen = value; }
     public GameObject DeathScreen { get => deathScreen; set => deathScreen = value; }
+    public GameObject MurdererScreen { get => murdererScreen; set => murdererScreen = value; }
+    public GameObject SaviourScreen { get => saviourScreen; set => saviourScreen = value; }
     #endregion
 
     #region MonoBehaviour
@@ -268,5 +270,3 @@ public class UIManager : MonoBehaviour
     //}
     #endregion
 }
-
-//SHOW SCREENS BEFORE THE "DEMO OVER" THAT SAY "MURDERER" or "SAVIOUR" (logic done, just gotta make the screens) (OPTIONAL, THAT MEANS HAVING TO SAVE DATA/INFORMATION)

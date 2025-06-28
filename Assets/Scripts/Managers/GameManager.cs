@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private bool isPaused;
     private UIManager uiManager;
-    private int killCount;
-    private int saveCount;
+    [SerializeField] private int killCount;
+    [SerializeField] private int saveCount;
     [SerializeField] private GameObject mainGame;
     [SerializeField] private NPC npc;
     [SerializeField] private PlayerRange playerRange;
@@ -108,9 +108,13 @@ public class GameManager : MonoBehaviour
         npc.PuzzleDone = true;
         elevator.AddRequirement();  
         player.SetActive(true);
-        if(npc.Is404 == false)
+        if(npc.Is404 == false && npc.IsY == false)
         {
             npc.MandatoryRange.SetActive(true);
+            range.Notify.SetActive(false);
+        }
+        else if(npc.IsY == true)
+        {
             range.Notify.SetActive(false);
         }
     }
@@ -125,8 +129,6 @@ public class GameManager : MonoBehaviour
         npc.DialogueOnClick = npc.BadVersion;
         KillCount++;
         IsDead = true;
-        
-        //trigger death :( animation
     }
     public void Spare()
     {
@@ -136,8 +138,6 @@ public class GameManager : MonoBehaviour
         npc.DialogueOnClick = npc.GoodVersion;
         SaveCount++;
         IsAlive = true;
-      
-        //trigger happy :) animation
     }
     #endregion
 

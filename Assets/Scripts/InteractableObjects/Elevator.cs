@@ -9,6 +9,7 @@ public class Elevator : MonoBehaviour
     private bool requirementsMet;
     private bool isOpen;
     [SerializeField] private bool isLastElevator;
+    [SerializeField] private bool isFloor1;
     [SerializeField] private KeyCode confirmationKey;
     [SerializeField] private KeyCode cancelationKey;
     [SerializeField] private GameObject confirmationScreen;
@@ -18,6 +19,7 @@ public class Elevator : MonoBehaviour
     [SerializeField] private int currentRequirements;
     [SerializeField] private GameObject rangeCollider;
     private UIManager uiManager;
+    private GameManager gameManager;
     #endregion
 
     #region MonoBehaviour
@@ -30,6 +32,7 @@ public class Elevator : MonoBehaviour
         requirementScreen.SetActive(false);
         currentRequirements = 0;
         uiManager = UIManager.instance;
+        gameManager = GameManager.instance;
     }
     private void Update()
     {
@@ -72,6 +75,17 @@ public class Elevator : MonoBehaviour
             {
                 uiManager.DemoScreen();
             }
+            else if(isFloor1)
+            {
+                if(gameManager.KillCount > gameManager.SaveCount)
+                {
+                    StartCoroutine(MurdererScreen());
+                }
+                else if(gameManager.KillCount < gameManager.SaveCount)
+                {
+                    StartCoroutine(SaviourScreen());
+                }
+            }
             else
             {
                 uiManager.NextScene();
@@ -85,6 +99,20 @@ public class Elevator : MonoBehaviour
             hasBeenTriggered = false;
         }
     }
+    private IEnumerator MurdererScreen()
+    {
+        uiManager.MurdererScreen.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        uiManager.MurdererScreen.SetActive(false);
+        uiManager.NextScene();
+    }
+    private IEnumerator SaviourScreen()
+    {
+        uiManager.SaviourScreen.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        uiManager.SaviourScreen.SetActive(false);
+        uiManager.NextScene();
+    }
     #endregion
 
     #region RequirementCount
@@ -94,7 +122,7 @@ public class Elevator : MonoBehaviour
     }
     private void RequirementsAchieved()
     {
-        if(currentRequirements == requirementsAmount)
+        if(currentRequirements >= requirementsAmount)
         {
             requirementsMet = true;
         }    
