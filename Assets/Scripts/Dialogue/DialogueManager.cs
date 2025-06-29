@@ -93,11 +93,11 @@ public class DialogueManager : MonoBehaviour
         {
             End404.StartMoving();
         }
-        else if (npc.PuzzleDone == true && gameManager.IsDead == true)
+        else if (npc.PuzzleDone == true && npc.IsDead == true)
         {
             npc.Animator.SetTrigger("Death");
         }
-        else if (npc.PuzzleDone == true && gameManager.IsAlive == true)
+        else if (npc.PuzzleDone == true && npc.IsAlive == true)
         {
             npc.Animator.SetTrigger("Life");
         }

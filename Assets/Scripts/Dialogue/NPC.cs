@@ -20,6 +20,8 @@ public class NPC : MonoBehaviour
     [SerializeField] private bool isY = false;
     [SerializeField] private bool puzzleDone = false;
     [SerializeField] private Animator animator;
+    [SerializeField] private bool isDead = false;
+    [SerializeField] private bool isAlive = false;
 
     public bool Is404 { get => is404; set => is404 = value; }
     public bool IsNS { get => isNS; set => isNS = value; }
@@ -35,6 +37,8 @@ public class NPC : MonoBehaviour
     public GameObject RangeCollider { get => rangeCollider; set => rangeCollider = value; }
     public GameObject MandatoryRange { get => mandatoryRange; set => mandatoryRange = value; }
     public Animator Animator { get => animator; set => animator = value; }
+    public bool IsDead { get => isDead; set => isDead = value; }
+    public bool IsAlive { get => isAlive; set => isAlive = value; }
     #endregion
 
     #region MonoBehaviour
@@ -42,6 +46,8 @@ public class NPC : MonoBehaviour
     {
         dialogueManager = DialogueManager.instance;
         Animator = GetComponent<Animator>();
+        IsDead = false;
+        IsAlive = false;
     }
     #endregion
 

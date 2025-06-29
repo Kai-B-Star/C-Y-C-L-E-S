@@ -17,13 +17,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private PlayerBase playerBase;
     [SerializeField] private Interactable range;
-    [SerializeField] private bool isDead = false;
-    [SerializeField] private bool isAlive = false;
+   
 
     public int KillCount { get => killCount; set => killCount = value; }
     public int SaveCount { get => saveCount; set => saveCount = value; }
-    public bool IsDead { get => isDead; set => isDead = value; }
-    public bool IsAlive { get => isAlive; set => isAlive = value; }
+
     #endregion
 
     #region MonoBehaviour
@@ -124,7 +122,7 @@ public class GameManager : MonoBehaviour
         OutOfPuzzle();
         npc.DialogueOnClick = npc.BadVersion;
         KillCount++;
-        IsDead = true;
+        npc.IsDead = true;
     }
     public void Spare()
     {
@@ -133,7 +131,7 @@ public class GameManager : MonoBehaviour
         OutOfPuzzle();
         npc.DialogueOnClick = npc.GoodVersion;
         SaveCount++;
-        IsAlive = true;
+        npc.IsAlive = true;
     }
     #endregion
 
