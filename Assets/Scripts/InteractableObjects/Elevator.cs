@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class Elevator : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class Elevator : MonoBehaviour
     [SerializeField] private int requirementsAmount;
     [SerializeField] private int currentRequirements;
     [SerializeField] private GameObject rangeCollider;
+    [SerializeField] private VideoPlayer videoPlayer;
+    [SerializeField] private GameObject video;
     private UIManager uiManager;
     private GameManager gameManager;
     #endregion
@@ -66,7 +69,6 @@ public class Elevator : MonoBehaviour
     {
         if (Input.GetKeyDown(confirmationKey) && isOpen == true)
         {
-            print("1");
             confirmationScreen.SetActive(false);
             rangeCollider.SetActive(false);
             isOpen = false;
@@ -88,7 +90,7 @@ public class Elevator : MonoBehaviour
             }
             else
             {
-                uiManager.NextScene();
+                StartCoroutine(CutsceneTime());
             }
         }
         else if (Input.GetKeyDown(cancelationKey) && isOpen == true)
@@ -132,6 +134,14 @@ public class Elevator : MonoBehaviour
         requirementScreen.SetActive(true);
         yield return new WaitForSeconds(5f);
         requirementScreen.SetActive(false);
+    }
+    private IEnumerator CutsceneTime()
+    {
+        video.SetActive(true);
+        videoPlayer.gameObject.SetActive(true);
+        videoPlayer.Play();
+        yield return new WaitForSeconds(9f);
+        uiManager.NextScene();
     }
     #endregion
 }

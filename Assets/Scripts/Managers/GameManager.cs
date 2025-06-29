@@ -113,10 +113,6 @@ public class GameManager : MonoBehaviour
             npc.MandatoryRange.SetActive(true);
             range.Notify.SetActive(false);
         }
-        else if(npc.IsY == true)
-        {
-            range.Notify.SetActive(false);
-        }
     }
     #endregion
 
